@@ -56,21 +56,26 @@ def double_crossover(parent1, parent2):
     used = []
 
     for i in range(len(parent1)):
-        for i in range(U1):
+        if i < U1:
             child1.append(parent1[i])
             used.append(parent1[i])
-        for i in range(U1, U2):
-            if not parent2[i] in used:
-                child1.append(parent2[i])
-                used.append(parent2[i])
-        for i in range (U2, len(parent1)):
-            if not parent1[i] in used:
-                child1.append(parent1[i])
+        if U1 <= i < U2 and not (parent2[i] in used):
+            child1.append(parent2[i])
+            used.append(parent2[i])
+        if i >= U2 and not (parent1[i] in used):
+            child1.append(parent1[i])
 
-
-
+    used.clear()
     child2 = []
-
+    for i in range(len(parent2)):
+        if i < U1:
+            child2.append(parent2[i])
+            used.append(parent2[i])
+        if U1 <= i < U2 and not (parent1[i] in used):
+            child1.append(parent1[i])
+            used.append(parent1[i])
+        if i >= U2 and not (parent2[i] in used):
+            child1.append(parent2[i])
 
     return [child1, child2]
 
