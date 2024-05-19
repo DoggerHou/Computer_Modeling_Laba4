@@ -24,7 +24,8 @@ def get_distance(city1, city2):
     return np.sqrt(np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2))
 
 
-def sum_distance(cyt):
+#Получить длинну пути популяции
+def get_path_distance(cyt):
     sum = 0
     for i in range(0, len(cyt) - 1):
         sum += get_distance(cyt[i], cyt[i + 1])
@@ -32,13 +33,17 @@ def sum_distance(cyt):
     return sum
 
 
-def mutate(city1, city2):
-    return 0
+# Функция мутирования (обмена генами)
+def mutate(child1, child2):
+    U1 = random.randrange(1, len(child1) - 1)
+    U2 = random.randrange(1, len(child1) - 1)
+    # Чтобы не выбрать неподходящие точки разрыва
+    while U1 == U2:
+        U2 = random.randrange(1, len(child1) - 1)
 
-
-# Одноточечное скрещивание
-def single_crossover(parent1, parent2):
-    return 0
+    child1[U1], child1[U2] = child1[U2], child1[U1]
+    child2[U1], child2[U2] = child2[U2], child2[U1]
+    return [child1, child2]
 
 
 # Двухточечное скрещивание
@@ -91,9 +96,11 @@ for i in range(len(cities)):
     buff = cities.copy()
     random.shuffle(buff)
     population.append(buff)
-for i in population:
-    print('Расстояние = ' + str(sum_distance(i)), *i, '\n\n', sep='\n')
 
+for j in population:
+    print('Расстояние = ' + str(get_path_distance(j)), j,)
+
+print("После мутаций и тд")
 # Выбираем двух родителей для скрещенивания
 for i in range(GENERATION_SIZE):
     u1 = random.randrange(0, len(population))
@@ -103,3 +110,13 @@ for i in range(GENERATION_SIZE):
         u2 = random.randrange(0, len(population))
 
     child = double_crossover(population[u1], population[u2])
+    if random.random() < MUTATION_RATE:
+        child = mutate(*child)
+    population.extend(child)
+    population = sorted(population, key=get_path_distance)
+    population = population[:-2]
+for j in population:
+    print('Расстояние = ' + str(get_path_distance(j)), j,)
+
+for j in population[0]:
+    print(str(j.number)+'-', end = '')
