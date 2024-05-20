@@ -21,7 +21,7 @@ class City:
 def get_distance(city1, city2):
     x1, y1, z1 = city1.get_coordinates()
     x2, y2, z2 = city2.get_coordinates()
-    return np.sqrt(np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2))
+    return np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2)
 
 
 #Получить длинну пути популяции
@@ -35,8 +35,8 @@ def get_path_distance(cyt):
 
 # Функция мутирования (обмена генами)
 def mutate(child1, child2):
-    U1 = random.randrange(1, len(child1) - 1)
-    U2 = random.randrange(1, len(child1) - 1)
+    U1 = random.randrange(0, len(child1))
+    U2 = random.randrange(0, len(child1))
     # Чтобы не выбрать неподходящие точки разрыва
     while U1 == U2:
         U2 = random.randrange(1, len(child1) - 1)
@@ -82,25 +82,19 @@ def double_crossover(parent1, parent2):
     return [child1, child2]
 
 
-with open('10.txt') as f:
+with open('50.txt') as f:
     data = f.readlines()
     cities = [City(i) for i in data]
 
-GENERATION_SIZE = 50  # Размер популяции
-MUTATION_RATE = 0.6
+GENERATION_SIZE = 150  # Размер популяции
+MUTATION_RATE = 0.65
 population = []
-estimate_best_route = []
-
 # Создали случайную популяцию
 for i in range(len(cities)):
     buff = cities.copy()
     random.shuffle(buff)
     population.append(buff)
 
-for j in population:
-    print('Расстояние = ' + str(get_path_distance(j)), j,)
-
-print("После мутаций и тд")
 # Выбираем двух родителей для скрещенивания
 for i in range(GENERATION_SIZE):
     u1 = random.randrange(0, len(population))
@@ -115,8 +109,8 @@ for i in range(GENERATION_SIZE):
     population.extend(child)
     population = sorted(population, key=get_path_distance)
     population = population[:-2]
-for j in population:
-    print('Расстояние = ' + str(get_path_distance(j)), j,)
 
-for j in population[0]:
-    print(str(j.number)+'-', end = '')
+print('Лучшее расстояние = ' + str(get_path_distance(population[0])))
+
+
+

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9e8d425-e801-4668-9a46-be32e83f6b56" name="Default Changelist" comment="Исправил скрещивание">
+    <list default="true" id="b9e8d425-e801-4668-9a46-be32e83f6b56" name="Default Changelist" comment="Почти все, непонятки с расстоянием">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -77,13 +77,21 @@
       <option name="project" value="LOCAL" />
       <updated>1716155387509</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Почти все, непонятки с расстоянием">
+      <created>1716157811617</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716157811617</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="тестирую скрещивание" />
     <MESSAGE value="Сделал двойное скрещивание" />
     <MESSAGE value="Исправил скрещивание" />
-    <option name="LAST_COMMIT_MESSAGE" value="Исправил скрещивание" />
+    <MESSAGE value="Почти все, непонятки с расстоянием" />
+    <option name="LAST_COMMIT_MESSAGE" value="Почти все, непонятки с расстоянием" />
   </component>
 </project>
